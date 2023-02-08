@@ -29,7 +29,7 @@ var defaultAutoDetectTypes = [
 	{ valuePattern: /^\-?[0-9]*\.[0-9]+$/, dataType: 'float' } ,
 	{ valuePattern: /^(true|false)$/i, dataType: 'bool' } ,
 	{ valuePattern: /^[0-9][0-9-: ]+$/, dataType: 'date' } ,
-	{ valuePattern: /^null$/, dataType: 'nil' }
+	{ valuePattern: /^null$/i, dataType: 'nil' }
 ];
 
 var defaultDataTypeConverters = {
