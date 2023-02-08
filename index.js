@@ -28,11 +28,11 @@ var defaultAutoDetectTypes = [
 	{ valuePattern: /^\-?[0-9]*\.[0-9]+$/, dataType: 'float' } ,
 	{ valuePattern: /^(true|false)$/i, dataType: 'bool' } ,
 	{ valuePattern: /^[0-9][0-9-: ]+$/, dataType: 'date' } ,
-	{ valuePattern: /^null$/i, dataType: 'nullstring' }
+	{ valuePattern: /^null$/, dataType: 'nil' }
 ];
 
 var defaultDataTypeConverters = {
-	nullstring:    function(str) { return {$type: 10}; },
+	nil:    function(str) { return {$type: 10}; },
 	string:        function(str) { return str; },
 	int:           function(str) {var i = parseInt(str); return isNaN(i) ? undefined : i},
 	float:         function(str) {var i = parseFloat(str); return isNaN(i) ? undefined : i},
