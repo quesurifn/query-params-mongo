@@ -24,23 +24,22 @@ function regEscape(pattern) {
 }
 
 var defaultAutoDetectTypes = [
-	{ fieldPattern: /_date$/, dataType: 'date' },
 	{ valuePattern: /^[0-9]+$/, dataType: 'int' } ,
 	{ valuePattern: /^\-?[0-9]*\.[0-9]+$/, dataType: 'float' } ,
 	{ valuePattern: /^(true|false)$/i, dataType: 'bool' } ,
 	{ valuePattern: /^[0-9][0-9-: ]+$/, dataType: 'date' } ,
-	{ valuePattern: /^null$/i, dataType: 'nil' }
+	{ valuePattern: /^null$/i, dataType: 'nullstring' }
 ];
 
 var defaultDataTypeConverters = {
-	nil:    function(str) { return {$type: 10} },
-	string: function(str) {return str; },
-	int :   function(str) {var i = parseInt(str); return isNaN(i) ? undefined : i},
-	float : function(str) {var i = parseFloat(str); return isNaN(i) ? undefined : i},
-	date:   function(str) {var d = new Date(str); return isNaN(d.getTime()) ? undefined : d},
-	bool:   function(str) {
-		// no, false, 0 => false. Others, (including '', eg, for checkboxes) is considered true.
-		return !/^n|^f/i.test(str) || str == '0';
+	nullstring:    function(str) { return {$type: 10}; },
+	string:        function(str) { return str; },
+	int:           function(str) {var i = parseInt(str); return isNaN(i) ? undefined : i},
+	float:         function(str) {var i = parseFloat(str); return isNaN(i) ? undefined : i},
+	date:          function(str) {var d = new Date(str); return isNaN(d.getTime()) ? undefined : d},
+	bool:          function(str) {
+		       // no, false, 0 => false. Others, (including '', eg, for checkboxes) is considered true.
+		       return !/^n|^f/i.test(str) || str == '0';
 	}
 }
 
